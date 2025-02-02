@@ -1,4 +1,5 @@
-import axios from "axios";
+const axios = require("axios");
+
 
 async function RecupererDonnees(url, apiName) {
     try {
@@ -12,11 +13,10 @@ async function RecupererDonnees(url, apiName) {
 }
 
 async function ObtenirLivres() {
-    // Liste d'auteurs célèbres
+   
     const auteurs = ["Victor Hugo", "Jules Verne", "Agatha Christie", "William Shakespeare", "Leo Tolstoy", 
         "Jane Austen", "Mark Twain", "George Orwell", "Charles Dickens", "Fyodor Dostoevsky"];
 
-    // Sélection aléatoire d'un auteur
     const ecrivain = auteurs[Math.floor(Math.random() * auteurs.length)];
 
     const url = `https://openlibrary.org/search.json?author=${encodeURIComponent(ecrivain)}`;
@@ -37,7 +37,7 @@ async function ObtenirLivres() {
 
 
 async function AfficherMasaImage() {
-    const API_KEY = "C1t2WNE3d9DQ6SZlReaBY1B1JC1iQ1ytsdDozyKH"; // Remplace par ta propre clé API
+    const API_KEY = "C1t2WNE3d9DQ6SZlReaBY1B1JC1iQ1ytsdDozyKH"; 
     const url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
     const data = await RecupererDonnees(url, "NASA");
     if (data) {

@@ -28,7 +28,7 @@ function getWeatherData(city, callback) {
     });
 }
 
-// 📌 Tester la fonction avec "Sousse"
+
 getWeatherData("Sousse", function (error, data) {
     if (error) {
         console.error("Erreur :", error);
