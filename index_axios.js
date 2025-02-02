@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "cac28766847e26031e196d931b95445b"; // Remplace par ta clé API
+const API_KEY = "cac28766847e26031e196d931b95445b"; 
 const BASE_URL = "http://api.openweathermap.org/data/2.5/weather?appid=" + API_KEY + "&units=metric&lang=fr&q=";
 
 async function getWeatherData(city) {
@@ -17,5 +17,5 @@ async function getWeatherData(city) {
     }
 }
 
-// 📌 Tester avec "Sousse"
+
 getWeatherData("Sousse");
