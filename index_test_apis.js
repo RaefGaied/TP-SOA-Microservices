@@ -13,10 +13,16 @@ async function RecupererDonnees(url, apiName) {
 }
 
 async function ObtenirLivres() {
+<<<<<<< HEAD
    
     const auteurs = ["Victor Hugo", "Jules Verne", "Agatha Christie", "William Shakespeare", "Leo Tolstoy", 
         "Jane Austen", "Mark Twain", "George Orwell", "Charles Dickens", "Fyodor Dostoevsky"];
 
+=======
+    const auteurs = ["Victor Hugo", "Jules Verne", "Agatha Christie", "William Shakespeare", "Leo Tolstoy", 
+        "Jane Austen", "Mark Twain", "George Orwell", "Charles Dickens", "Fyodor Dostoevsky"];
+  
+>>>>>>> d2e2d99244253ff3cf8e8ddcf9934c3007350dee
     const ecrivain = auteurs[Math.floor(Math.random() * auteurs.length)];
 
     const url = `https://openlibrary.org/search.json?author=${encodeURIComponent(ecrivain)}`;
