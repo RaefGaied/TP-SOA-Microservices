@@ -35,7 +35,7 @@ async function ObtenirLivres() {
 
 
 async function AfficherMasaImage() {
-    const API_KEY = "C1t2WNE3d9DQ6SZlReaBY1B1JC1iQ1ytsdDozyKH"; // Remplace par ta propre clé API
+    const API_KEY = "C1t2WNE3d9DQ6SZlReaBY1B1JC1iQ1ytsdDozyKH"; 
     const url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
     const data = await RecupererDonnees(url, "NASA");
     if (data) {
