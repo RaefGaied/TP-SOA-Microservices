@@ -1,0 +1,10 @@
+{
+    "realm": "api-realm",
+    "auth-server-url": "http://localhost:8080/auth",
+    "ssl-required": "external",
+    "resource": "pai-id",
+    "credentials": {
+    "secret": "CrKmhs6fl8B8Mhp05nHYyxoaa2SZvxOu"
+    },
+    "confidential-port": 0
+}
