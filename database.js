@@ -46,5 +46,5 @@ const db = new sqlite3.Database('./maBaseDeDonnees.sqlite', sqlite3.OPEN_READWRI
     }
 });
 
-// Export de la base de données
+
 module.exports = db;
