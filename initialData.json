@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "title": "Développement Front-end pour Site E-commerce",
+    "description": "Créer une interface utilisateur réactive en utilisant React et Redux pour un site e-commerce.",
+    "completed": false,
+    "duration": 120
+  },
+  {
+    "id": "2",
+    "title": "Développement Back-end pour Authentification Utilisateur",
+    "description": "Implémenter un système d'authentification et d'autorisation pour une application web en utilisant Node.js, Express, et Passport.js",
+    "completed": false,
+    "duration": 180
+  },
+  {
+    "id": "3",
+    "title": "Tests et Assurance Qualité pour Application Web",
+    "description": "Développer et exécuter des plans de test et des cas de test complets.",
+    "completed": false,
+    "duration": 90
+  },
+  {
+    "id": "4",
+    "title": "Nouvelle tâche",
+    "description": "Description de la tâche",
+    "completed": false,
+    "duration": 60
+  },
+  {
+    "id": "5",
+    "title": "Déploiement en production",
+    "completed": true,
+    "duration": 60,
+    "description": "Configurer et déployer l'application sur AWS avec Docker."
+  }
+]
