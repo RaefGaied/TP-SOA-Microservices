@@ -1,10 +1,14 @@
 {
-    "realm": "api-realm",
-    "auth-server-url": "http://localhost:8080/auth",
-    "ssl-required": "external",
-    "resource": "pai-id",
-    "credentials": {
-    "secret": "CrKmhs6fl8B8Mhp05nHYyxoaa2SZvxOu"
-    },
-    "confidential-port": 0
+  "realm": "api-realm",
+  "auth-server-url": "http://localhost:8080/",
+  "ssl-required": "external",
+  "resource": "api-personne",
+  "verify-token-audience": false,
+  "credentials": {
+    "secret": "lmMqDHxDIwXzO6GITSQHs61z47w8r7JQ"
+  },
+  "confidential-port": 0,
+  "policy-enforcer": {
+    "credentials": {}
+  }
 }

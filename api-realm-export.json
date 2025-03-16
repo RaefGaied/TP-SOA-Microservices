@@ -1,0 +1,24 @@
+  {
+    "clientId": "api-personne",
+    "name": "api-personne",
+    "description": "Client for API Personne",
+    "enabled": true,
+    "protocol": "openid-connect",
+    "publicClient": false,
+    "standardFlowEnabled": true,
+    "implicitFlowEnabled": false,
+    "directAccessGrantsEnabled": true,
+    "serviceAccountsEnabled": true,
+    "authorizationServicesEnabled": true,
+    "clientAuthenticatorType": "client-secret",
+    "secret": "lmMqDHxDIwXzO6GITSQHs61z47w8r7JQ",
+    "redirectUris": [
+      "http://localhost:3000/*"
+    ],
+    "webOrigins": [
+      "http://localhost:3000"
+    ],
+    "consentRequired": false,
+    "attributes": {}
+  }
+

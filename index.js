@@ -1,12 +1,28 @@
 const express = require('express');
+const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const db = require('./database');
 
 const app = express();
-app.use(express.json());
-
 const PORT = 3000;
 
+app.use(express.json());
 
+// 1️⃣ **Configuration CORS** : Autoriser toutes les origines
+app.use(cors());
+
+// Pour restreindre à certains domaines, utilise cette ligne :
+// app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:4200'] }));
+
+// 2️⃣ **Configuration du Rate Limiting** : Max 100 requêtes/15 min
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // 100 requêtes par IP
+    message: 'Trop de requêtes effectuées depuis cette IP, veuillez réessayer après 15 minutes.'
+});
+app.use(limiter);
+
+// 🌍 **Routes API**
 app.get('/', (req, res) => {
     res.json("Registre de personnes! Choisissez le bon routage!");
 });
@@ -21,7 +37,6 @@ app.get('/personnes', (req, res) => {
     });
 });
 
-
 app.get('/personnes/:id', (req, res) => {
     const id = req.params.id;
     db.get("SELECT * FROM personnes WHERE id = ?", [id], (err, row) => {
@@ -32,7 +47,6 @@ app.get('/personnes/:id', (req, res) => {
         res.json({ "message": "success", "data": row });
     });
 });
-
 
 app.post('/personnes', (req, res) => {
     const { nom, adresse } = req.body;
@@ -69,7 +83,6 @@ app.put('/personnes/:id', (req, res) => {
     });
 });
 
-
 app.delete('/personnes/:id', (req, res) => {
     const id = req.params.id;
     db.run(`DELETE FROM personnes WHERE id = ?`, id, function (err) {
@@ -81,6 +94,7 @@ app.delete('/personnes/:id', (req, res) => {
     });
 });
 
+// 🚀 **Démarrage du serveur**
 app.listen(PORT, () => {
     console.log(`✅ Serveur démarré sur http://localhost:${PORT}`);
 });
