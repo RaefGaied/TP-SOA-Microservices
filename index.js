@@ -8,7 +8,7 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// 1️⃣ **Configuration CORS** : Autoriser toutes les origines
+
 app.use(cors());
 
 // Pour restreindre à certains domaines, utilise cette ligne :
@@ -94,7 +94,7 @@ app.delete('/personnes/:id', (req, res) => {
     });
 });
 
-// 🚀 **Démarrage du serveur**
+
 app.listen(PORT, () => {
     console.log(`✅ Serveur démarré sur http://localhost:${PORT}`);
 });

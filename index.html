@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test CORS</title>
+</head>
+<body>
+    <h2>Liste des personnes</h2>
+    <div id="output"></div> 
+
+    <script>
+        fetch('http://localhost:3000/personnes')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); 
+                let output = document.getElementById("output");
+                if (data.data && Array.isArray(data.data)) {
+                    output.innerHTML = data.data.map(person =>
+                        `<p><strong>${person.nom}</strong> - ${person.adresse}</p>`
+                    ).join('');
+                } else {
+                    output.innerHTML = "<p>Aucune donnée disponible.</p>";
+                }
+            })
+            .catch(error => {
+                console.error('Erreur :', error);
+                document.getElementById("output").innerHTML = "<p>Erreur lors du chargement des données.</p>";
+            });
+    </script>
+</body>
+</html>
