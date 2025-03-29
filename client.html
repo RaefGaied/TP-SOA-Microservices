@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat WebSocket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
+        }
+        button {
+            padding: 8px 20px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #messages {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>Chat en temps réel</h2>
+
+    <div class="form-group">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" placeholder="Entrez votre nom">
+    </div>
+
+    <div class="form-group">
+        <label for="roomId">ID de la salle :</label>
+        <input type="text" id="roomId" placeholder="ID de la salle (ex: 456)">
+    </div>
+
+    <div class="form-group">
+        <input type="text" id="messageInput" placeholder="Votre message">
+        <button onclick="sendMessage()">Envoyer</button>
+    </div>
+
+    <div id="messages"></div> 
+
+    <script>
+        const socket = new WebSocket('ws://localhost:8080');
+
+        socket.onopen = function () {
+            console.log("Connexion WebSocket établie !");
+        };
+
+        socket.onerror = function (error) {
+            console.error("Erreur WebSocket :", error);
+        };
+
+        socket.onmessage = function (event) {
+            try {
+                const data = JSON.parse(event.data);
+                const messageDiv = document.createElement("div");
+
+                if (data.chat_message) {
+                    messageDiv.textContent = `${data.chat_message.sender_id} : ${data.chat_message.content}`;
+                } else {
+                    messageDiv.textContent = "Message inconnu : " + event.data;
+                }
+
+                document.getElementById("messages").appendChild(messageDiv);
+            } catch (e) {
+                console.error("Erreur lors du parsing du message :", e);
+            }
+        };
+
+        function sendMessage() {
+            const username = document.getElementById("username").value.trim();
+            const roomId = document.getElementById("roomId").value.trim();
+            const messageContent = document.getElementById("messageInput").value.trim();
+
+            if (!username || !roomId) {
+                alert("Veuillez entrer un nom d'utilisateur et un ID de salle !");
+                return;
+            }
+            if (!messageContent) {
+                alert("Le message ne peut pas être vide !");
+                return;
+            }
+
+            const messageJson = JSON.stringify({
+                chat_message: {
+                    id: Date.now().toString(), 
+                    room_id: roomId,
+                    sender_id: username,
+                    content: messageContent,
+                    timestamp: Date.now()
+                }
+            });
+
+            console.log("Envoi du message JSON :", messageJson);
+            socket.send(messageJson);
+            document.getElementById("messageInput").value = "";
+        }
+    </script>
+</body>
+</html>

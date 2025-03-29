@@ -1,0 +1,51 @@
+syntax = "proto3";
+package chat;
+
+enum UserStatus {
+  UNKNOWN = 0;
+  ACTIVE = 1;
+  INACTIVE = 2;
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  UserStatus status = 4;
+}
+
+message ChatMessage {
+  string id = 1;
+  string room_id = 2;
+  string sender_id = 3;
+  string content = 4;
+  int64 timestamp = 5;
+}
+
+message GetUserRequest {
+  string user_id = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message ChatStream {
+  oneof payload {
+    ChatMessage chat_message = 1;
+  }
+}
+
+message GetChatHistoryRequest {
+  string room_id = 1;
+}
+
+message GetChatHistoryResponse {
+  repeated ChatMessage messages = 1;
+}
+
+service ChatService {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc Chat(stream ChatStream) returns (stream ChatStream);
+  rpc GetChatHistory(GetChatHistoryRequest) returns (GetChatHistoryResponse);
+}
