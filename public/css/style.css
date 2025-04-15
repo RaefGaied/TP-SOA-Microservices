@@ -86,7 +86,6 @@
     background-color: rgba(13, 110, 253, 0.1);
   }
   
-  /* Responsive */
   @media (max-width: 768px) {
     #mode-select {
       width: 100% !important;
