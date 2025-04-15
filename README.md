@@ -1,18 +1,22 @@
-🚀 TP6 – Système de Messagerie Temps Réel avec Kafka
+# 🚀 TP6 – Système de Messagerie Temps Réel avec Kafka
 
-Interface du dashboard développé
+## 🖼️ Interface du Dashboard Développé :
 
-🎯 Objectifs du TP
-✔️ Implémenter un producteur et un consommateur Kafka
+![image](https://github.com/user-attachments/assets/188e4c2f-ab63-4a7f-a588-603a652baf5b)
 
-✔️ Persister les messages dans une base PostgreSQL
 
-✔️ Développer une interface de visualisation (dashboard)
+## 🎯 Objectifs du TP
 
-✔️ Concevoir une API REST avec Express
+- ✔️ Implémenter un producteur et un consommateur Kafka  
+- ✔️ Persister les messages dans une base PostgreSQL  
+- ✔️ Développer une interface de visualisation (dashboard)  
+- ✔️ Concevoir une API REST avec Express  
 
-🏗️ Architecture Technique
+---
 
+## 🏗️ Architecture Technique
+
+```mermaid
 flowchart LR
     A[Dashboard] -->|POST /send-message| B[API Express]
     B -->|Produce| C[(Kafka)]
@@ -20,9 +24,13 @@ flowchart LR
     D -->|Store| E[(PostgreSQL)]
     B -->|GET /messages| E
     E -->|Retrieve| A
-    
-🗂️ Structure du Projet
+```
 
+---
+
+## 🗂️ Structure du Projet
+
+```
 TP6-Kafka/
 ├── public/               # Frontend (HTML/CSS/JS)
 │   ├── css/style.css
@@ -34,80 +42,120 @@ TP6-Kafka/
 ├── package.json          # Dépendances
 ├── .env.example          # Fichier d'exemple pour la configuration
 └── README.md             # Documentation
+```
 
-⚙️ Installation & Configuration
+---
 
-📥 Installation
+## ⚙️ Installation & Configuration
 
+### 📥 Installation
+
+```bash
 git clone https://github.com/RaefGaied/TP-SOA-Microservices.git
 cd TP-SOA-Microservices
 git checkout TP6-Kafka
 npm install
 cp .env.example .env
+```
 
-🧾 Configuration du fichier .env
+---
 
-# Kafka
+### 🧾 Configuration du fichier `.env`
+
+#### Kafka
+
+```env
 KAFKA_BROKERS=localhost:9092
 KAFKA_TOPIC=tp6-messages
-# PostgreSQL
+```
+
+#### PostgreSQL
+
+```env
 PGUSER=postgres
 PGPASSWORD=mot_de_passe
 PGDATABASE=kafka_tp6
+```
 
-🚀 Lancement de l’Application
-Mode manuel (lancement étape par étape):
+---
 
-# Terminal 1 – Producteur Kafka
+## 🚀 Lancement de l’Application
+
+### Mode manuel (lancement étape par étape)
+
+#### 🖥️ Terminal 1 – Producteur Kafka
+
+```bash
 node producer.js
-# Lance le producteur Kafka (envoi automatique de messages à intervalle régulier)
+# ➜ Lance le producteur Kafka (envoi automatique de messages à intervalle régulier)
+```
 
-# Terminal 2 – Consommateur Kafka
+#### 🖥️ Terminal 2 – Consommateur Kafka
+
+```bash
 node consumer.js
-# Démarre le consommateur Kafka (stocke les messages dans PostgreSQL)
+# ➜ Démarre le consommateur Kafka (stocke les messages dans PostgreSQL)
+```
 
-# Terminal 3 – Serveur Express (au choix)
+#### 🖥️ Terminal 3 – Serveur Express
+
+```bash
 node server.js
-# Démarre le serveur Express en mode classique (production)
+# ➜ Démarre le serveur Express en mode classique (production)
+```
 
-ou tout simplement : 
+ou
+
+```bash
 npm run dev
-# Démarre le serveur Express en mode développement (avec redémarrage automatique)
+# ➜ Démarre le serveur en mode développement (avec redémarrage automatique)
+```
 
-➡️ Accéder au dashboard à l'adresse : http://localhost:3000
+➡️ Accéder au dashboard : [http://localhost:3000](http://localhost:3000)
 
-⚙️ Fonctionnalités
-🖥 Frontend (Dashboard)
-Envoi de messages en mode manuel ou automatique
+---
 
-Affichage en temps réel des messages
+## ⚙️ Fonctionnalités
 
-Interface responsive avec Bootstrap
+### 🖥 Frontend (Dashboard)
 
-🛠 Backend (API Express)
-Endpoints REST :
+- Envoi de messages en mode manuel ou automatique
+- Affichage en temps réel des messages
+- Interface responsive avec Bootstrap
 
-POST /send-message   # Envoie un message
-GET  /messages       # Récupère tous les messages
+### 🛠 Backend (API Express)
 
-Sécurité :
-Validation des entrées
-Gestion des erreurs
+#### Endpoints REST :
 
-📊 Résultats de Test
-# Test de performance :
-1000 messages envoyés en 12.4 secondes
-Débit moyen : ~80 msg/sec
-Latence moyenne : 45 ms
+- `POST /send-message` → Envoie un message  
+- `GET /messages` → Récupère tous les messages
 
+#### Sécurité :
 
-📝 Compte Rendu
-❗ Difficultés rencontrées
-Synchronisation entre Kafka et PostgreSQL
-Gestion des connexions simultanées
-Intégration temps réel dans le dashboard
-✅ Solutions apportées
-Mise en place d’un mécanisme de reconnexion automatique
-Contrôle du flux de messages
-Optimisation des requêtes SQL
+- Validation des entrées  
+- Gestion des erreurs  
 
+---
+
+## 📊 Résultats de Test
+
+- **Test de performance :**  
+  - 1000 messages envoyés en 12.4 secondes  
+  - Débit moyen : ~80 msg/sec  
+  - Latence moyenne : 45 ms  
+
+---
+
+## 📝 Compte Rendu
+
+### ❗ Difficultés Rencontrées
+
+- Synchronisation entre Kafka et PostgreSQL  
+- Gestion des connexions simultanées  
+- Intégration temps réel dans le dashboard  
+
+### ✅ Solutions Apportées
+
+- Mise en place d’un mécanisme de reconnexion automatique  
+- Contrôle du flux de messages  
+- Optimisation des requêtes SQL
