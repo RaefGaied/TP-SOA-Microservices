@@ -1,0 +1,104 @@
+
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --light-bg: #f8f9fa;
+    --card-bg: #ffffff;
+  }
+  
+ 
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: #212529;
+  }
+  
+  .container {
+    max-width: 1200px;
+  }
+  
+
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+  }
+  
+  .card-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 10px 10px 0 0 !important;
+    padding: 15px 20px;
+  }
+  
+
+  #messages-list {
+    max-height: 500px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+  
+  .message-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+  }
+  
+  .message-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+  
+  .message-item:last-child {
+    border-bottom: none;
+  }
+  
+  .timestamp {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    min-width: 160px;
+    text-align: right;
+  }
+  
+  #message-form {
+    transition: all 0.3s ease;
+  }
+  
+  #mode-select {
+    transition: all 0.3s ease;
+  }
+  
+  #mode-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+  
+
+  #auto-status {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(13, 110, 253, 0.1);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    #mode-select {
+      width: 100% !important;
+    }
+    
+    .message-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .timestamp {
+      margin-top: 5px;
+      text-align: left;
+    }
+  }
