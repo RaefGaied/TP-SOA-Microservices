@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package movie;
+
+message Movie {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string created_at = 4;
+  string updated_at = 5;
+}
+
+// Requêtes existantes
+message GetMovieRequest {
+  string movie_id = 1;
+}
+
+message GetMovieResponse {
+  Movie movie = 1;
+}
+
+message SearchMoviesRequest {
+  string query = 1;
+}
+
+message SearchMoviesResponse {
+  repeated Movie movies = 1;
+}
+
+// Nouvelles opérations
+message CreateMovieRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message CreateMovieResponse {
+  Movie movie = 1;
+}
+
+message UpdateMovieRequest {
+  string movie_id = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message UpdateMovieResponse {
+  Movie movie = 1;
+}
+
+message DeleteMovieRequest {
+  string movie_id = 1;
+}
+
+message DeleteMovieResponse {
+  bool success = 1;
+}
+
+service MovieService {
+
+  rpc GetMovie(GetMovieRequest) returns (GetMovieResponse);
+  rpc SearchMovies(SearchMoviesRequest) returns (SearchMoviesResponse);
+  
+
+  rpc CreateMovie(CreateMovieRequest) returns (CreateMovieResponse);
+  rpc UpdateMovie(UpdateMovieRequest) returns (UpdateMovieResponse);
+  rpc DeleteMovie(DeleteMovieRequest) returns (DeleteMovieResponse);
+
+  rpc ProcessMovieEvent(stream MovieEvent) returns (stream MovieEventAck);
+}
+
+
+message MovieEvent {
+  string event_type = 1;  
+  Movie movie = 2;
+  string timestamp = 3;
+}
+
+message MovieEventAck {
+  bool success = 1;
+  string message_id = 2;
+}

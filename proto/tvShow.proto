@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package tvShow;
+
+message TVShow {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  int32 seasons = 4;
+  int32 episodes = 5;
+  string created_at = 6;
+  string updated_at = 7;
+}
+
+
+message GetTVShowRequest {
+  string tv_show_id = 1;
+}
+
+message GetTVShowResponse {
+  TVShow tv_show = 1;
+}
+
+message SearchTVShowsRequest {
+  string query = 1;
+}
+
+message SearchTVShowsResponse {
+  repeated TVShow tv_shows = 1;
+}
+
+
+message CreateTVShowRequest {
+  string title = 1;
+  string description = 2;
+  int32 seasons = 3;
+  int32 episodes = 4;
+}
+
+message CreateTVShowResponse {
+  TVShow tv_show = 1;
+}
+
+message UpdateTVShowRequest {
+  string tv_show_id = 1;
+  string title = 2;
+  string description = 3;
+  int32 seasons = 4;
+  int32 episodes = 5;
+}
+
+message UpdateTVShowResponse {
+  TVShow tv_show = 1;
+}
+
+message DeleteTVShowRequest {
+  string tv_show_id = 1;
+}
+
+message DeleteTVShowResponse {
+  bool success = 1;
+}
+
+
+message TVShowEvent {
+  string event_type = 1;  
+  TVShow tv_show = 2;
+  string timestamp = 3;
+}
+
+message TVShowEventAck {
+  bool success = 1;
+  string message_id = 2;
+}
+
+service TVShowService {
+ 
+  rpc GetTvshow(GetTVShowRequest) returns (GetTVShowResponse);
+  rpc SearchTvshows(SearchTVShowsRequest) returns (SearchTVShowsResponse);
+  
+
+  rpc CreateTvshow(CreateTVShowRequest) returns (CreateTVShowResponse);
+  rpc UpdateTvshow(UpdateTVShowRequest) returns (UpdateTVShowResponse);
+  rpc DeleteTvshow(DeleteTVShowRequest) returns (DeleteTVShowResponse);
+  
+  rpc ProcessTVShowEvent(stream TVShowEvent) returns (stream TVShowEventAck);
+}
