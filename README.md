@@ -1,6 +1,7 @@
 # 📚 TP7 - Architecture Microservices avec REST, GraphQL, gRPC et Kafka
 
-![Architecture Diagram](docs/architecture.png)
+![deepseek_mermaid_20250422_1b0527](https://github.com/user-attachments/assets/a1946e09-c938-4154-adb8-dbcb8ca092cf)
+
 
 ## 🌟 Fonctionnalités Principales
 
