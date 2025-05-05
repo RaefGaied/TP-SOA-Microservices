@@ -56,7 +56,8 @@ tp-kong/
 ```
 
 ## 📸 Captures d'écran
-![Test Users](screenshots/users.png)
+![Test Users](![image](https://github.com/user-attachments/assets/014874ab-fde0-46f7-9aec-7dafe6810497)
+)
 *Résultat de /users*
 
 ![Test Products](screenshots/products.png)
@@ -67,4 +68,4 @@ tp-kong/
 - [Docker Compose](https://docs.docker.com/compose/)
 
 ## ✍️ Auteur
-Raef Gaied
+Raef Gaied - 4eme anne genie logiciel
