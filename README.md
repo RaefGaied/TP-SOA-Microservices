@@ -56,13 +56,11 @@ tp-kong/
 ```
 
 ## 📸 Captures d'écran
-![Test Users]
-![image](https://github.com/user-attachments/assets/6370bd8d-3d2d-43cb-8695-5988089c6aa3)
-
 *Résultat de /users*
-
-![Test Products](screenshots/products.png)
+![image](https://github.com/user-attachments/assets/6370bd8d-3d2d-43cb-8695-5988089c6aa3)
 *Résultat de /products*
+![image](https://github.com/user-attachments/assets/34419f4e-6fb5-4ecf-a9df-f612db8347b9)
+
 
 ## 📚 Documentation
 - [Documentation Kong](https://docs.konghq.com/gateway/)
