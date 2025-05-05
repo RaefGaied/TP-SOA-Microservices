@@ -56,8 +56,9 @@ tp-kong/
 ```
 
 ## 📸 Captures d'écran
-![Test Users](![image](https://github.com/user-attachments/assets/014874ab-fde0-46f7-9aec-7dafe6810497)
-)
+![Test Users]
+![image](https://github.com/user-attachments/assets/6370bd8d-3d2d-43cb-8695-5988089c6aa3)
+
 *Résultat de /users*
 
 ![Test Products](screenshots/products.png)
