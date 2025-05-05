@@ -1,0 +1,26 @@
+# Version du format de déclaration Kong
+_format_version: "2.1"
+
+# Définition des services à proxifier
+services:
+  # Premier service - service-a
+  - name: service-a # Nom logique du service dans Kong
+    url: http://service-a:3001 # URL interne du service (nom du conteneur Docker)
+
+    # Routes associées à ce service
+    routes:
+      - name: users-route # Nom identifiant la route
+        paths:
+          ["/users"] # Chemin d'accès public (/users)
+          # Tous les requêtes sur /users seront redirigées vers service-a:3001
+
+  # Deuxième service - service-b
+  - name: service-b # Nom logique du second service
+    url: http://service-b:3002 # URL du second service (conteneur service-b)
+
+    # Configuration des routes
+    routes:
+      - name: products-route # Identification de la route
+        paths:
+          ["/products"] # Chemin public (/products)
+          # Les requêtes sur /products iront vers service-b:3002

@@ -1,0 +1,47 @@
+# Version de la syntaxe Docker Compose
+version: '3.8'
+
+# Définition des services
+services:
+  # Premier service - service-a
+  service-a:
+    build: ./service-a  # Construit l'image à partir du Dockerfile dans ./service-a
+    networks:
+      - kong-net  # Connecté au réseau kong-net
+
+  # Deuxième service - service-b 
+  service-b:
+    build: ./service-b  # Construit l'image à partir du Dockerfile dans ./service-b
+    networks:
+      - kong-net  # Connecté au réseau kong-net
+
+  # Service Kong (API Gateway)
+  kong:
+    image: kong:latest  # Utilise l'image officielle la plus récente de Kong
+    environment:
+      KONG_DATABASE: "off"  # Mode sans base de données (DB-less)
+      KONG_DECLARATIVE_CONFIG: /etc/kong/kong.yml  # Fichier de configuration déclarative
+      KONG_ADMIN_LISTEN: "0.0.0.0:8001"  # Active l'API Admin sur le port 8001
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout  # Redirige les logs d'accès Admin vers stdout
+      KONG_ADMIN_ERROR_LOG: /dev/stderr   # Redirige les logs d'erreur Admin vers stderr
+      KONG_ADMIN_GUI_ACCESS_LOG: /dev/stdout  # Logs d'accès de l'interface Admin (si activée)
+      KONG_ADMIN_GUI_ERROR_LOG: /dev/stderr   # Logs d'erreur de l'interface Admin (si activée)
+    volumes:
+      - ./kong.yml:/etc/kong/kong.yml:ro  # Monte le fichier de configuration en lecture seule
+    ports:
+      - "8000:8000"  # Port du proxy (entrées/sorties HTTP)
+      - "8001:8001"  # Port de l'API Admin
+      - "8443:8443"  # Port du proxy HTTPS
+      - "8444:8444"  # Port Admin HTTPS 
+    networks:
+      - kong-net  # Connecté au réseau kong-net
+    healthcheck:
+      test: ["CMD", "kong", "health"]  # Commande de vérification de santé
+      interval: 10s  # Vérification toutes les 10 secondes
+      timeout: 10s   # Délai d'attente de 10s
+      retries: 3     # Nombre de tentatives avant échec
+
+# Configuration du réseau
+networks:
+  kong-net:
+    driver: bridge  # Crée un réseau bridge pour la communication entre conteneurs
